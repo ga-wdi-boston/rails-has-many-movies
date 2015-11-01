@@ -1,0 +1,26 @@
+# Get all movies
+curl localhost:3000
+OR
+curl localhost:3000/movies
+
+# Get movie with ID of 3
+curl localhost:3000/movies/3
+
+# Create an movie
+curl -X POST -d "movie[name]=Another movie" -d "movie[rating]=PG" -d "movie[desc]=Very long, boring" -d "movie[length]=205" localhost:3000/movies
+
+# Create an movie with JSON
+curl -X POST -H 'Content-Type: application/json' -d '{"movie":{"name":"Black Mass", "rating":"R", "desc":"Crime, South Boston", "length": 144}}' http://localhost:3000/movies
+
+# Update Movie 3 using JSON
+curl -X PATCH -H 'Content-Type: application/json' -d '{"movie":{"rating":"R"}}' http://localhost:3000/movies/3
+
+# Delete Movie 4
+# Check in the rails server log and rails console that the movie was deleted.
+curl -X DELETE localhost:3000/movies/4
+
+# Delete Movie 5
+# If we used the strong params then we would need to do this
+# Need the -d because strong params require the id to be inside a hash with the key
+# movie.
+curl -v -X DELETE -d "movie[id]=5" localhost:3000/movies/5
