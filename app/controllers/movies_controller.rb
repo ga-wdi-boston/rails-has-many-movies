@@ -23,7 +23,7 @@ class MoviesController < ApplicationController
       render json: @movie.errors, status: :unprocessable_entity
      end
   end
-  
+
   # PATCH /movies/:id
   def update
     @movie = Movie.find(params[:id])
@@ -35,14 +35,14 @@ class MoviesController < ApplicationController
   end
 
   # DELETE /movies/:id
-  def delete
+  def destroy
     @movie = Movie.find(params[:id])
     @movie.delete
 
     head :no_content
   end
-  
-  private 
+
+  private
    def movie_params
     params.require(:movie)
       .permit(:name, :rating, :desc, :length)
